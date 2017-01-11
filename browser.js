@@ -1,9 +1,10 @@
+const getRandomColor = () => "#"+Math.floor(Math.random() * (255 * 255 * 255) + 1).toString(16);
 
 /* Sets random color of a given HTML element */
 function setRandomColor(elementName) {
   var elementList = document.querySelectorAll(elementName);
   for(const element of elementList) { 
-    element.style.color = "#"+Math.floor(Math.random() * (255 * 255 * 255) + 1).toString(16);
+    element.style.color = getRandomColor();
   }
 }
 
@@ -16,8 +17,18 @@ setRandomColor("li > a"); // Sets random color to all anchor(a) elements under l
 function setRandomBackgroundColor(elementName) {
   var elementList = document.querySelectorAll(elementName);
   for(const element of elementList) { 
-    element.style.backgroundColor = "#"+Math.floor(Math.random() * (255 * 255 * 255) + 1).toString(16);
+    element.style.backgroundColor = getRandomColor();
   }
 }
 // Example
 setRandomBackgroundColor("p");  // Sets random background color to all the paragraph elements
+
+/* Sets random border color of a given HTML element */
+function setRandomBorderColor(elementName) {
+  document.querySelectorAll(elementName).forEach(function(element) {
+    element.style.border = "4px dashed " + getRandomColor();
+  });
+}
+
+// Example
+setRandomBorderColor("p");  // Sets random border color to all the paragraph elements
