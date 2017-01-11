@@ -1,1 +1,1 @@
-# javascript-collections
+# Javascript Collections
