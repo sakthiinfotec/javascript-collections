@@ -16,7 +16,7 @@ setRandomColor("li > a"); // Sets random color to all anchor(a) elements under l
 function setRandomBackgroundColor(elementName) {
   var elementList = document.querySelectorAll(elementName);
   for(const element of elementList) { 
-    element.style.backgroundColor = "#"+Math.floor(Math.random() * (255 * 255 * 255)).toString(16);
+    element.style.backgroundColor = "#"+Math.floor(Math.random() * (255 * 255 * 255) + 1).toString(16);
   }
 }
 // Example
