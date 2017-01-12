@@ -33,3 +33,13 @@ function setRandomBorderColor(elementName) {
 
 // Example
 setRandomBorderColor("p");  // Sets random border color to all the paragraph elements
+
+/* Create an element with plain Javascript DOM API i.e without jQuery */
+var elP = document.createElement("p");
+var elPtxt = document.createTextNode("Web languages: HTML, CSS & JavaScript");
+elP.appendChild(elPtxt);
+
+var elDiv = document.querySelector("#wrapper-div");
+document.body.insertBefore(elP, elDiv);
+// or
+document.body.appendChild(elP);
