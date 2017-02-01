@@ -43,3 +43,10 @@ var elDiv = document.querySelector("#wrapper-div");
 document.body.insertBefore(elP, elDiv);
 // or
 document.body.appendChild(elP);
+
+// pick() of underscore.js in ES6
+function pick(object, ...keys) {
+  let result = Object.create(null);
+  keys.forEach((key) => { result[key] = object[key]; })
+  return result;
+}
