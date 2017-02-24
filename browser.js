@@ -1,3 +1,5 @@
+"use strict"
+
 /* Arrow function to generate a random color hex. code */
 const randomColor = () => "#"+Math.floor(Math.random() * (255 * 255 * 255) + 1).toString(16);
 
