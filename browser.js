@@ -52,3 +52,22 @@ function pick(object, ...keys) {
   keys.forEach((key) => { result[key] = object[key]; })
   return result;
 }
+
+// How bind() works?
+function withdrawAccount(amt) {
+	this.total-=amt;
+	return this.name + "'s remaining balance is:" + this.total;
+}
+
+var sakthi = {name: "Sakthi",total: 1000};
+var krishna = {name: "Krishna",total: 2000};
+
+// bind() will be map `this` to a binding object
+var withdrawSakthiAccount = withdrawAccount.bind(sakthi, 100);
+var withdrawKrishnaAccount = withdrawAccount.bind(krishna, 250);
+
+withdrawSakthiAccount();  // Sakthi's remaining balance is:900
+withdrawKrishnaAccount(); // Krishna's remaining balance is:1750
+withdrawSakthiAccount();  // Sakthi's remaining balance is:800
+withdrawKrishnaAccount(); // Krishna's remaining balance is:1500
+
