@@ -55,8 +55,8 @@ function pick(object, ...keys) {
 
 // How bind() works?
 function withdrawAccount(amt) {
-	this.total-=amt;
-	return this.name + "'s remaining balance is:" + this.total;
+  this.total-=amt;
+  return this.name + "'s remaining balance is:" + this.total;
 }
 
 var sakthi = {name: "Sakthi",total: 1000};
