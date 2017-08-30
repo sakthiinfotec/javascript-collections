@@ -71,3 +71,9 @@ withdrawKrishnaAccount(); // Krishna's remaining balance is:1750
 withdrawSakthiAccount();  // Sakthi's remaining balance is:800
 withdrawKrishnaAccount(); // Krishna's remaining balance is:1500
 
+// RegExp to get Chrome Version
+// navigator.userAgent -> "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36"
+var chromeVersion = /Chrome\/([0-9.]+)/g.exec(navigator.userAgent)[1];
+
+var re = /Chrome\/(.+)\ /g;
+var chromeVersion = navigator.userAgent.match(re)[0].trim().split('/')[1]
