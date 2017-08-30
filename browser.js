@@ -77,3 +77,16 @@ var chromeVersion = /Chrome\/([0-9.]+)/g.exec(navigator.userAgent)[1];
 
 var re = /Chrome\/(.+)\ /g;
 var chromeVersion = navigator.userAgent.match(re)[0].trim().split('/')[1]
+
+// Forereload of CSS files
+// Ref: https://stackoverflow.com/questions/45343401/how-to-reload-single-file-in-chrome-developer-tools/45359474#45359474
+function reloadCSS() {
+  const links = document.getElementsByTagName('link');
+  Array.from(links)
+    .filter(link => link.rel.toLowerCase() === 'stylesheet' && link.href)
+    .forEach(link => {
+      const url = new URL(link.href, location.href);
+      url.searchParams.set('forceReload', Date.now());
+      link.href = url.href;
+    });
+}
