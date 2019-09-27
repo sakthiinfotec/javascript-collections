@@ -13,6 +13,12 @@ client.on ('data', (data) => {
   if (i == 10) client.end ();
 });
 
+client.on('error', (e) => {
+  if (e.code === 'ECONNREFUSED') {
+    console.log(`Unable to connect to server ${e.address}:${e.port}. Kindly verify connection details!`)
+  }
+});
+
 client.on ('close', () => {
-  console.log ('Connection with server closed');
+  console.log ('Connection with server closed!');
 });
