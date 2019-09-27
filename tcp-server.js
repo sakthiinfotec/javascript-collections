@@ -1,6 +1,15 @@
 var net = require ('net');
+
+const HOST = '127.0.0.1';
+const PORT = 54321;
+
 var textChunk = '';
 var i = 0;
+
+var onceStarted = () => {
+  console.log('Server is up and running...');
+};
+
 var server = net.createServer (socket => {
   const interval = setInterval (() => {
     const dt = new Date ();
@@ -12,6 +21,7 @@ var server = net.createServer (socket => {
     console.log ('Socket closed');
     clearInterval (interval);
   });
+
   socket.on ('error', () => {
     console.log ('Socket error!');
     clearInterval (interval);
@@ -23,9 +33,8 @@ var server = net.createServer (socket => {
     // socket.write (textChunk);
   });
 });
-server.listen (54321, '127.0.0.1',() => {
-  console.log('Server is up and running...');
-});
+
+server.listen (PORT, HOST, onceStarted );
 
 server.on ('connection', () => {
   console.log ('Client connected');
@@ -36,7 +45,7 @@ server.on('error', (e) => {
     console.log('Address in use, retrying...');
     setTimeout(() => {
       server.close();
-      server.listen(PORT, HOST);
+      server.listen(PORT, HOST, onceStarted);
     }, 2000);
   }
 });
