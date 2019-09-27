@@ -23,8 +23,20 @@ var server = net.createServer (socket => {
     // socket.write (textChunk);
   });
 });
-server.listen (54321, '127.0.0.1');
+server.listen (54321, '127.0.0.1',() => {
+  console.log('Server is up and running...');
+});
 
 server.on ('connection', () => {
   console.log ('Client connected');
+});
+
+server.on('error', (e) => {
+  if (e.code === 'EADDRINUSE') {
+    console.log('Address in use, retrying...');
+    setTimeout(() => {
+      server.close();
+      server.listen(PORT, HOST);
+    }, 2000);
+  }
 });
