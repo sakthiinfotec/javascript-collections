@@ -90,3 +90,17 @@ function reloadCSS() {
       link.href = url.href;
     });
 }
+
+// Greeting message
+greetUser(): string {
+  const curHour = new Date().getHours();
+  let greet: string;
+  if (curHour < 12) {
+    greet = 'Morning';
+  } else if (curHour >= 12 && curHour <= 17) {
+    greet = 'Afternoon';
+  } else if (curHour >= 17 && curHour <= 24) {
+    greet = 'Evening';
+  }
+  return `Good ${greet}`;
+}
