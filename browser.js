@@ -106,8 +106,15 @@ greetUser(): string {
 }
 
 // Ref: https://stackoverflow.com/questions/29652862/highlight-text-using-reactjs
-cosnt getHighlightedText = (text, highlight) => {
+const getHighlightedText = (text, highlight) => {
   // Split text on highlight term, include term itself into parts, ignore case
   const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
   return <span>{parts.filter(part => part.length > 0).map(part => part.toLowerCase() === highlight.toLowerCase() ? <b>{part}</b> : part)}</span>;
 }
+
+
+/* List privisioned devices in Apple Developer portal */
+const nodeList = document.querySelectorAll('div[data-platform="IOS"] span:nth-of-type(2)')
+const ids = [];
+nodeList.forEach(el => ids.push(el.innerText))
+console.log(ids.join('\n'))
