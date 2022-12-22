@@ -1,3 +1,46 @@
+// Closure & Lexical Scope (1)
+function createIncrement() {
+  let count = 0;
+  function increment() { 
+    count++;
+  }
+
+  let message = `Count is ${count}`;
+  function log() {
+    console.log(message);
+  }
+  
+  return [increment, log];
+}
+const [increment, log] = createIncrement();
+increment(); 
+increment(); 
+increment(); 
+log();  // Count is 0
+
+
+// Closure & Lexical Scope (1)
+function createIncrement() {
+  let count = 0;
+  function increment() { 
+    count++;
+  }
+
+  function log() {
+    let message = `Count is ${count}`;
+    console.log(message);
+  }
+  
+  return [increment, log];
+}
+const [increment, log] = createIncrement();
+increment(); 
+increment(); 
+increment(); 
+log();  // Count is 3
+
+
+
 /* Function Scope */
 // Output: 0 1 2 3
 for(let i=0; i<=3;i++) {
