@@ -86,7 +86,7 @@ for (let j = 0; j < 3; j++) {
 0.1 + 0.2 === 0.3 // false
 0.1 + 0.2; // => 0.30000000000000004
 
-// Hoisting
+// Hoisting (1)
 console.log(myVar);   // undefined
 console.log(myConst); // Uncaught ReferenceError: Cannot access 'myConst' before initialization
 
@@ -94,3 +94,19 @@ var myVar = 'value';
 const myConst = 3.14;
 
 
+// Hosting (2)
+numbers();	// two
+var numbers = function () {
+  console.log('Number one');
+}
+numbers();	// one
+
+function numbers() {
+  console.log('Number two');
+}
+numbers();	// one
+
+// Hoisting (3)
+console.log(a);		// undefined
+var a;
+console.log(b);		// Uncaught ReferenceError: b is not defined
