@@ -4,6 +4,7 @@ function multiply(a) {
   }
 }
 
+// multiply is a curried function that returns another function.
 const double = multiply(2);
 double(3); // => 6
 double(5); // => 10
