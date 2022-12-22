@@ -82,3 +82,15 @@ for (let j = 0; j < 3; j++) {
 	}, 100);
 }
 
+// Floating point match
+0.1 + 0.2 === 0.3 // false
+0.1 + 0.2; // => 0.30000000000000004
+
+// Hoisting
+console.log(myVar);   // undefined
+console.log(myConst); // Uncaught ReferenceError: Cannot access 'myConst' before initialization
+
+var myVar = 'value';
+const myConst = 3.14;
+
+
