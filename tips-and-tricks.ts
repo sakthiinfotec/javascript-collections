@@ -31,3 +31,9 @@ foo();
 
 console.log(typeof a);  // undefined
 console.log(typeof b);	// number
+
+
+// Array length
+const clothes = ['jacket', 't-shirt'];
+clothes.length = 0; // Reducing length will delete elements there after from the index till end
+console.log(clothes[0]);  // undefined
