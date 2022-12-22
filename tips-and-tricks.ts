@@ -51,3 +51,34 @@ for (var i = 0; i < length; i++);{
   numbers.push(i + 1);
 }
 console.log(numbers);   // [5]
+
+
+// Variable scope
+let i;
+for (i = 0; i < 3; i++) {
+  const log = () => {
+    console.log(i);     // 3 3 3
+  }
+  setTimeout(log, 100);
+}
+
+let j;
+for (j = 0; j < 3; j++) {
+  setTimeout(function() {
+	  console.log(j);   // 3 3 3
+	}, 100);
+}
+
+for (let i = 0; i < 3; i++) {
+  const log = () => {
+    console.log(i);     // 0 1 2
+  }
+  setTimeout(log, 100);
+}
+
+for (let j = 0; j < 3; j++) {
+  setTimeout(function() {
+	  console.log(j);   // 0 1 2
+	}, 100);
+}
+
