@@ -52,6 +52,19 @@ for (var i = 0; i < length; i++);{
 }
 console.log(numbers);   // [5]
 
+// var vs let (1)
+for (let i = 0; i < 3; i++) {
+  setTimeout(function log() {
+    console.log(i); // 0 1 2
+  }, i * 1000);
+}
+
+// var vs let (2)
+for (var i = 0; i < 3; i++) {
+  setTimeout(function log() {
+    console.log(i); // 3 3 3
+  }, i * 1000);
+}
 
 // Variable scope
 let i;
