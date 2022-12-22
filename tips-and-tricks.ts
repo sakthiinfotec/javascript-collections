@@ -32,7 +32,12 @@ foo();
 console.log(typeof a);  // undefined
 console.log(typeof b);	// number
 
-
+// Automatic semicolon insertion
+function arrayFromValue(item) {
+  return
+    [item];
+}
+arrayFromValue(10); // undefined
 // Array length
 const clothes = ['jacket', 't-shirt'];
 clothes.length = 0; // Reducing length will delete elements there after from the index till end
