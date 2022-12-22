@@ -37,3 +37,12 @@ console.log(typeof b);	// number
 const clothes = ['jacket', 't-shirt'];
 clothes.length = 0; // Reducing length will delete elements there after from the index till end
 console.log(clothes[0]);  // undefined
+
+
+// Code debugging (Semicolon at end of For loop)
+const length = 4;
+const numbers = [];
+for (var i = 0; i < length; i++);{
+  numbers.push(i + 1);
+}
+console.log(numbers);   // [5]
