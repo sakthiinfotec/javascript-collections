@@ -110,3 +110,24 @@ numbers();	// one
 console.log(a);		// undefined
 var a;
 console.log(b);		// Uncaught ReferenceError: b is not defined
+
+
+// Closure (1)
+let counter = function() {
+  let k = 0;
+  return () => k++;
+}();
+console.log(counter());	// 0
+console.log(counter());	// 1
+console.log(counter());	// 2
+console.log(counter());	// 3
+
+// Closure (2)
+let count = 0;
+(function immediate() {
+  if (count === 0) {
+    let count = 1;
+    console.log(count); // 1
+  }
+  console.log(count); // 0
+})();
