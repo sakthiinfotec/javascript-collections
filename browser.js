@@ -118,3 +118,27 @@ const nodeList = document.querySelectorAll('div[data-platform="IOS"] span:nth-of
 const ids = [];
 nodeList.forEach(el => ids.push(el.innerText))
 console.log(ids.join('\n'))
+
+
+// USA State and Lat/LONG Scrapper
+// Ref: https://developers.google.com/public-data/docs/canonical/states_csv
+$$('.devsite-table-wrapper table TR')
+    .forEach(el => {
+        const list = el.childNodes;
+        for(let tr of list) {
+            $(tr).querySelectorAll('td').forEach(td => console.log(td.innerText))
+        }
+    })
+
+
+const rows = []
+$$('.devsite-table-wrapper table TR')
+    .forEach(el => {
+        const list = el.childNodes;
+        const row = [];
+        for(let tr of list) {
+          tr.childNodes.forEach(td => row.push(td.textContent))
+        }
+        rows.push(row.join(','));
+    })
+console.log(rows.join("\n"))
