@@ -21,8 +21,8 @@ Writing unit and integration tests is crucial to ensure that your Stack implemen
 ```sh
 npm install --save-dev jest @types/jest ts-jest
 npx ts-jest config:init
-Then, update your package.json to include a test script:
 ```
+Then, update your package.json to include a test script:
 
 ```json
 "scripts": {
