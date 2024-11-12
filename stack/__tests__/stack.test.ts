@@ -1,50 +1,95 @@
-class Stack<T> {
-  private items: T[] = [];
+import Stack from '../stack'; // Adjust the path as necessary
 
-  // Add an element to the top of the stack
-  push(element: T): void {
-    this.items.push(element);
-  }
+describe('Stack', () => {
+  let stack: Stack<number>;
 
-  // Remove and return the top element of the stack
-  pop(): T | undefined {
-    return this.items.pop();
-  }
+  beforeEach(() => {
+    stack = new Stack<number>();
+  });
 
-  // Return the top element of the stack without removing it
-  peek(): T | undefined {
-    if (this.isEmpty()) {
-      return undefined;
-    }
-    return this.items[this.items.length - 1];
-  }
+  test('should be empty when initialized', () => {
+    expect(stack.isEmpty()).toBe(true);
+    expect(stack.size()).toBe(0);
+  });
 
-  // Check if the stack is empty
-  isEmpty(): boolean {
-    return this.items.length === 0;
-  }
+  test('should add elements using push', () => {
+    stack.push(10);
+    expect(stack.isEmpty()).toBe(false);
+    expect(stack.size()).toBe(1);
+    expect(stack.peek()).toBe(10);
 
-  // Get the number of elements in the stack
-  size(): number {
-    return this.items.length;
-  }
+    stack.push(20);
+    expect(stack.isEmpty()).toBe(false);
+    expect(stack.size()).toBe(2);
+    expect(stack.peek()).toBe(20);
+  });
 
-  // Clear all elements from the stack
-  clear(): void {
-    this.items = [];
-  }
-}
+  test('should remove elements using pop', () => {
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
 
-// Example usage:
-const stack = new Stack<number>();
-stack.push(10);
-stack.push(20);
-stack.push(30);
+    expect(stack.pop()).toBe(30);
+    expect(stack.size()).toBe(2);
 
-console.log(stack.peek()); // Output: 30
-console.log(stack.pop());  // Output: 30
-console.log(stack.size()); // Output: 2
-console.log(stack.isEmpty()); // Output: false
+    expect(stack.pop()).toBe(20);
+    expect(stack.size()).toBe(1);
 
-stack.clear();
-console.log(stack.isEmpty()); // Output: true
+    expect(stack.pop()).toBe(10);
+    expect(stack.size()).toBe(0);
+
+    expect(stack.pop()).toBeUndefined();
+    expect(stack.size()).toBe(0);
+  });
+
+  test('should return the top element using peek', () => {
+    expect(stack.peek()).toBeUndefined();
+
+    stack.push(10);
+    expect(stack.peek()).toBe(10);
+
+    stack.push(20);
+    expect(stack.peek()).toBe(20);
+
+    stack.pop();
+    expect(stack.peek()).toBe(10);
+
+    stack.pop();
+    expect(stack.peek()).toBeUndefined();
+  });
+
+  test('should clear all elements using clear', () => {
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
+
+    expect(stack.size()).toBe(3);
+    expect(stack.isEmpty()).toBe(false);
+
+    stack.clear();
+
+    expect(stack.size()).toBe(0);
+    expect(stack.isEmpty()).toBe(true);
+    expect(stack.peek()).toBeUndefined();
+  });
+
+  test('should handle multiple types', () => {
+    const stringStack = new Stack<string>();
+    stringStack.push('hello');
+    stringStack.push('world');
+
+    expect(stringStack.peek()).toBe('world');
+    expect(stringStack.pop()).toBe('world');
+    expect(stringStack.pop()).toBe('hello');
+    expect(stringStack.isEmpty()).toBe(true);
+
+    const booleanStack = new Stack<boolean>();
+    booleanStack.push(true);
+    booleanStack.push(false);
+
+    expect(booleanStack.peek()).toBe(false);
+    expect(booleanStack.pop()).toBe(false);
+    expect(booleanStack.pop()).toBe(true);
+    expect(booleanStack.isEmpty()).toBe(true);
+  });
+});
