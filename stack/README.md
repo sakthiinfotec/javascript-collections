@@ -46,6 +46,7 @@ npm test
 This will run all the tests in your project, including the unit and integration tests for the Stack class.
 
 ##### Summary
-Unit Tests: Test individual methods and their behavior in isolation.
-Integration Tests: Test a sequence of operations to ensure they work together as expected.
+- Unit Tests: Test individual methods and their behavior in isolation.
+- Integration Tests: Test a sequence of operations to ensure they work together as expected.
+
 These tests should cover the basic functionality of your Stack implementation and help catch any potential issues.
