@@ -1,50 +1,44 @@
-class Stack<T> {
-  private items: T[] = [];
+import Stack from './stack'; // Adjust the path as necessary
 
-  // Add an element to the top of the stack
-  push(element: T): void {
-    this.items.push(element);
-  }
+describe('Stack Integration', () => {
+  let stack: Stack<number>;
 
-  // Remove and return the top element of the stack
-  pop(): T | undefined {
-    return this.items.pop();
-  }
+  beforeEach(() => {
+    stack = new Stack<number>();
+  });
 
-  // Return the top element of the stack without removing it
-  peek(): T | undefined {
-    if (this.isEmpty()) {
-      return undefined;
-    }
-    return this.items[this.items.length - 1];
-  }
+  test('should handle a sequence of operations correctly', () => {
+    // Initial state
+    expect(stack.isEmpty()).toBe(true);
+    expect(stack.size()).toBe(0);
 
-  // Check if the stack is empty
-  isEmpty(): boolean {
-    return this.items.length === 0;
-  }
+    // Push elements
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
 
-  // Get the number of elements in the stack
-  size(): number {
-    return this.items.length;
-  }
+    expect(stack.isEmpty()).toBe(false);
+    expect(stack.size()).toBe(3);
+    expect(stack.peek()).toBe(30);
 
-  // Clear all elements from the stack
-  clear(): void {
-    this.items = [];
-  }
-}
+    // Pop an element
+    expect(stack.pop()).toBe(30);
+    expect(stack.isEmpty()).toBe(false);
+    expect(stack.size()).toBe(2);
+    expect(stack.peek()).toBe(20);
 
-// Example usage:
-const stack = new Stack<number>();
-stack.push(10);
-stack.push(20);
-stack.push(30);
+    // Push another element
+    stack.push(40);
 
-console.log(stack.peek()); // Output: 30
-console.log(stack.pop());  // Output: 30
-console.log(stack.size()); // Output: 2
-console.log(stack.isEmpty()); // Output: false
+    expect(stack.isEmpty()).toBe(false);
+    expect(stack.size()).toBe(3);
+    expect(stack.peek()).toBe(40);
 
-stack.clear();
-console.log(stack.isEmpty()); // Output: true
+    // Clear the stack
+    stack.clear();
+
+    expect(stack.isEmpty()).toBe(true);
+    expect(stack.size()).toBe(0);
+    expect(stack.peek()).toBeUndefined();
+  });
+});
