@@ -35,16 +35,4 @@ class Stack<T> {
   }
 }
 
-// Example usage:
-const stack = new Stack<number>();
-stack.push(10);
-stack.push(20);
-stack.push(30);
-
-console.log(stack.peek()); // Output: 30
-console.log(stack.pop());  // Output: 30
-console.log(stack.size()); // Output: 2
-console.log(stack.isEmpty()); // Output: false
-
-stack.clear();
-console.log(stack.isEmpty()); // Output: true
+export default Stack;
