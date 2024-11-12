@@ -1,3 +1,21 @@
+##### Example usage
+
+```javascript
+// Example usage:
+const stack = new Stack<number>();
+stack.push(10);
+stack.push(20);
+stack.push(30);
+
+console.log(stack.peek()); // Output: 30
+console.log(stack.pop());  // Output: 30
+console.log(stack.size()); // Output: 2
+console.log(stack.isEmpty()); // Output: false
+
+stack.clear();
+console.log(stack.isEmpty()); // Output: true
+```
+
 Writing unit and integration tests is crucial to ensure that your Stack implementation works correctly. We'll use a testing framework like Jest, which is widely used for JavaScript and TypeScript projects. If you haven't already set up Jest, you can do so by running the following commands in your project directory:
 
 ```sh
