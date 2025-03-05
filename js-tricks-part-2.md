@@ -531,6 +531,7 @@ createButtons();
 Closures are a powerful feature in JavaScript that allow functions to retain access to variables from their outer scope even after the outer function has finished executing. They are used for encapsulation, creating private variables, and handling asynchronous operations. Understanding closures is essential for mastering JavaScript and writing more efficient and maintainable code.
 
 <hr/>
+
 ### 16. What is the use of the `bind` method?
 the `bind()` method serves a specific purpose: controlling the `this` context within which a function is executed. Here’s a breakdown of its key uses:
 
