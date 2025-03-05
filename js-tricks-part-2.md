@@ -594,4 +594,41 @@ Key points to remember:
 - `bind()` doesn’t immediately execute the function; it returns a new function with the bound `this` value.
 - You can optionally pre-bind arguments along with `this`.
 - Be mindful of using `bind()` too extensively, as it can sometimes impact code readability.
+<hr/>
 
+### 17. What is the difference between a shallow copy and a deep copy?
+Both shallow and deep copies are methods of creating a new copy of an object or data structure in JavaScript. However, they differ fundamentally in how they handle nested references and the level of duplication:
+
+**Shallow Copy:**  
+- Creates a new object with the same **structure** as the original object.
+- Copies the **values** of top-level properties or elements.
+- **Maintains references** to any nested objects or arrays within the original object.
+- Changes made to the **nested objects** in the copy will also affect the original object due to the shared references.
+
+Example:
+```javascript
+const original = { name: "Alice", address: { city: "New York" } };
+const shallowCopy = Object.assign({}, original);
+ 
+shallowCopy.name = "Bob"; // Only name changes in the copy
+shallowCopy.address.city = "London"; // Modifies city in both objects (shared reference)
+```
+
+**Deep Copy:**  
+- Creates a completely **independent** copy of the original object.
+- Recursively copies the **values** of all properties and elements, including nested objects and arrays.
+- Creates **new copies** of any nested objects or arrays, breaking the connection with the original.
+- Changes made to the copy will **not** affect the original object.
+
+Example:
+```javascript
+const original = { name: "Alice", address: { city: "New York" } };
+const deepCopy = JSON.parse(JSON.stringify(original)); // Common deep copy method
+ 
+deepCopy.name = "Bob"; // Only name changes in the copy
+deepCopy.address.city = "London"; // Only modifies city in the copy (new object)
+```
+
+**Choosing the Right Method:**  
+- Use a **shallow copy** when you only need a new reference to the same data structure and any changes might be desired to affect both the original and the copy.
+- Use a **deep copy** when you need a completely independent copy that won’t be affected by modifications to the original, especially if dealing with complex objects or data structures with nested references.
