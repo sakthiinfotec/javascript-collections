@@ -179,6 +179,7 @@ Key features of function expressions:
   ```javascript
   // This would result in an error
   nonHoistedFunction(); // Uncaught TypeError: nonHoistedFunction is not a function
+  console.log(nonHoistedFunction); // Uncaught ReferenceError: Cannot access 'nonHoistedFunction' before initialization
    
   const nonHoistedFunction = function() {
     console.log("I am not hoisted!");
