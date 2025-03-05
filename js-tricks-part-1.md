@@ -23,41 +23,73 @@ console.log(z); // Outputs 30
 ```
 
 ##### 3. How does hoisting work in JavaScript?
-Hoisting is a behavior in JavaScript where variable and function declarations are moved to the top of their containing scope during the compilation phase. This means that you can use a variable or call a function even before it’s been declared in the code.
+Hoisting in JavaScript is a behavior where variable and function declarations are conceptually moved to the top of their containing scope during the compilation phase, before the code is executed. It's important to note that the actual code isn't physically moved, but the JavaScript engine behaves as if it were.
 
-**Variables:** For variables declared using var, the hoisting process initializes them with undefined. Variables declared using let and const are also hoisted, but they remain in a “temporal dead zone” until the actual declaration statement is encountered.
+Here's how hoisting works for variables and functions:
 
-Example:
+### Variable Hoisting
+1.  **`var` declarations:**
+    *   Variables declared with `var` are hoisted to the top of their scope and initialized with `undefined`.
+    *   This means you can use the variable before it appears to be declared in the code, but its value will be `undefined` until the line where you actually assign a value to it.
 
-```Javascript
-console.log(x); // Outputs: undefined
-var x = 5;
- 
-// Equivalent to:
-var x;
-console.log(x); // Outputs: undefined
-x = 5;
-```
-**Functions:** Function declarations are fully hoisted, including both the function name and its implementation. This means you can call a function before its declaration in the code.
+    ```javascript
+    console.log(myVar); // Output: undefined
+    var myVar = 10;
+    console.log(myVar); // Output: 10
+    ```
+2.  **`let` and `const` declarations:**
+    *   Variables declared with `let` and `const` are also hoisted, but they are not initialized. They are in a "temporal dead zone" (TDZ) from the start of the scope until the line where they are declared.
+    *   Accessing a `let` or `const` variable before its declaration results in a `ReferenceError`.
 
-Example:
+    ```javascript
+    console.log(myLet); // Output: ReferenceError: Cannot access 'myLet' before initialization
+    let myLet = 20;
+    console.log(myLet); // Output: 20
 
-```javascript
-hoistedFunction(); // Outputs: "I am hoisted!"
- 
-function hoistedFunction() {
-  console.log("I am hoisted!");
-}
-```
-ES6 `let` and `const`: Variables declared with `let` and `const` are hoisted, but they are not initialized during the hoisting phase. Instead, they remain in the temporal dead zone until the actual declaration statement is encountered.
+    console.log(myConst); // Output: ReferenceError: Cannot access 'myConst' before initialization
+    const myConst = 30;
+    console.log(myConst); // Output: 30
+    ```
 
-Example:
+### Function Hoisting
+1.  **Function declarations:**
+    *   Function declarations are fully hoisted to the top of their scope. This means you can call the function before its declaration in the code.
+    *   Both the function's declaration and its definition are hoisted.
 
-```javascript
-console.log(y); // ReferenceError: Cannot access 'y' before initialization
-let y = 10;
-```
-While understanding hoisting is crucial, it is generally considered good practice to declare variables at the top of their scope to avoid unexpected behavior.
+    ```javascript
+    myFunction(); // Output: "Hello, world!"
+
+    function myFunction() {
+      console.log("Hello, world!");
+    }
+    ```
+2.  **Function expressions:**
+    *   Function expressions are not hoisted in the same way as function declarations. If a function expression is assigned to a variable declared with `var`, only the variable declaration is hoisted (and initialized with `undefined`), not the function itself.
+    *   If a function expression is assigned to a variable declared with `let` or `const`, the variable is hoisted but remains in the TDZ, similar to variable hoisting with `let` and `const`.
+
+    ```javascript
+    myExpression(); // Output: TypeError: myExpression is not a function
+
+    var myExpression = function() {
+      console.log("This is a function expression.");
+    };
+    ```
+
+    ```javascript
+    myExpression(); // Output: ReferenceError: Cannot access 'myExpression' before initialization
+
+    let myExpression = function() {
+      console.log("This is a function expression.");
+    };
+    ```
+
+**Key Points:**
+*   Hoisting allows functions to be used before they are defined in the code, which can improve readability.
+*   `let` and `const` were introduced to provide more control over variable scope and to avoid some of the pitfalls associated with `var` and hoisting.
+*   Understanding hoisting is essential for writing predictable and bug-free JavaScript code.
+*   Always declare variables and functions at the top of their scope to avoid confusion and potential errors.
+
+By understanding how hoisting works, you can avoid common pitfalls and write cleaner, more maintainable JavaScript code.
 
 ##### 4. Describe the concept of closures
 Closures allow functions to retain access to variables from their outer (enclosing) scopes even after the outer function has finished executing. This is because the inner function “closes over” the variables it needs.
