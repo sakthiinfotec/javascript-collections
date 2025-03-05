@@ -155,15 +155,14 @@ function myFunction() {
 
 Key features of function declarations:
 - Hoisting: Function declarations are hoisted to the top of their scope, meaning you can call the function before its declaration in the code.
-
- Example of hoisting:
- ```javascript
- hoistedFunction(); // Outputs: "I am hoisted!"
-  
- function hoistedFunction() {
-   console.log("I am hoisted!");
- }
- ```
+   Example of hoisting:
+   ```javascript
+   hoistedFunction(); // Outputs: "I am hoisted!"
+    
+   function hoistedFunction() {
+     console.log("I am hoisted!");
+   }
+   ```
 - Named functions: Function declarations have a name identifier, which allows you to refer to the function by its name.
 
 **Function Expression:** A function expression, on the other hand, involves defining a function within an expression. It does not hoist the function to the top of the scope, and it can be anonymous or have a name. The syntax for a named function expression is:
@@ -176,24 +175,24 @@ const myFunction = function() {
 Key features of function expressions:
 
 - No hoisting: Function expressions are not hoisted, so you must define them before you can use them.
- Example without hoisting:
- ```javascript
- // This would result in an error
- nonHoistedFunction(); // Uncaught TypeError: nonHoistedFunction is not a function
-  
- const nonHoistedFunction = function() {
-   console.log("I am not hoisted!");
- };
- ```
+  Example without hoisting:
+  ```javascript
+  // This would result in an error
+  nonHoistedFunction(); // Uncaught TypeError: nonHoistedFunction is not a function
+   
+  const nonHoistedFunction = function() {
+    console.log("I am not hoisted!");
+  };
+  ```
 - Can be assigned to variables: Function expressions can be assigned to variables, making them more flexible and allowing functions to be passed around as arguments or returned from other functions.
- Example of assigning to a variable:
- ```javascript
- const myFunction = function() {
-   console.log("I am assigned to a variable!");
- };
-  
- myFunction(); // Outputs: "I am assigned to a variable!"
- ```
+  Example of assigning to a variable:
+  ```javascript
+  const myFunction = function() {
+    console.log("I am assigned to a variable!");
+  };
+   
+  myFunction(); // Outputs: "I am assigned to a variable!"
+  ```
 
 ##### 10. How does the setTimeout function work?
 `setTimeout` is a function that delays the execution of a function by a specified amount of time (in milliseconds). It operates asynchronously, allowing the rest of the program to continue running.
