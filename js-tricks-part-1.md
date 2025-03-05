@@ -27,7 +27,7 @@ Hoisting in JavaScript is a behavior where variable and function declarations ar
 
 Here's how hoisting works for variables and functions:
 
-### Variable Hoisting
+**Variable Hoisting:**  
 1.  **`var` declarations:**
     *   Variables declared with `var` are hoisted to the top of their scope and initialized with `undefined`.
     *   This means you can use the variable before it appears to be declared in the code, but its value will be `undefined` until the line where you actually assign a value to it.
@@ -51,7 +51,7 @@ Here's how hoisting works for variables and functions:
     console.log(myConst); // Output: 30
     ```
 
-### Function Hoisting
+**Function Hoisting:**  
 1.  **Function declarations:**
     *   Function declarations are fully hoisted to the top of their scope. This means you can call the function before its declaration in the code.
     *   Both the function's declaration and its definition are hoisted.
