@@ -632,3 +632,47 @@ deepCopy.address.city = "London"; // Only modifies city in the copy (new object)
 **Choosing the Right Method:**  
 - Use a **shallow copy** when you only need a new reference to the same data structure and any changes might be desired to affect both the original and the copy.
 - Use a **deep copy** when you need a completely independent copy that won’t be affected by modifications to the original, especially if dealing with complex objects or data structures with nested references.
+<hr/>
+
+### 18. How does the call stack work in JavaScript?
+In JavaScript, the **call stack** is a crucial mechanism that maintains order and context during function execution. It’s essentially a **LIFO (Last In, First Out)** data structure, similar to a stack of plates. Imagine each plate representing a function being called.
+
+Here’s how it works:
+1. **Empty Stack:** When your JavaScript code starts, the call stack is initially empty.
+2. **Function Call:** When you call a function, that function is pushed onto the call stack. This creates a **stack frame** within the stack, which stores information about the function, including:
+    - The function’s arguments
+    - Local variables declared within the function
+    - The value of `this`
+    - The return address (where execution should resume after the function finishes)
+3. **Recursive Function Calls:** If a function calls itself (recursion), new stack frames are created for each recursive call, pushing them deeper onto the stack.
+4. **Function Execution:** Inside a stack frame, the function’s code is executed line by line.
+4. **Return Statement:** When the function reaches a `return` statement or encounters an error, it “returns” by:
+    - Popping its own stack frame from the call stack.
+    - Returning the value specified in the `return` statement (or `undefined` if there’s no `return`).
+    - Resuming execution from the return address stored in the previous stack frame.
+
+Example:
+```javascript
+function foo() {
+  console.log('foo');
+}
+ 
+function bar() {
+  foo();
+  console.log('bar');
+}
+ 
+bar();
+// Call Stack: bar -> foo
+// Output: foo, bar
+```
+
+**Key Characteristics:**  
+- **Single-threaded:** Due to LIFO and limited resources, JavaScript engines typically execute code in a single thread, meaning they handle one function call at a time. Asynchronous operations often use alternative mechanisms like event loops and queues.
+- **Error Handling:** Stack frames help trace errors, as the call stack holds information about function calls leading up to the error.
+- **Debugging:** Call stacks are invaluable for debugging, as they show the current active function and its context, aiding in analyzing issues and pinpointing errors.
+
+**Limitations:**  
+- **Stack Overflow:** Recursion or deeply nested function calls can potentially cause a stack overflow if the call stack exceeds a predefined limit, leading to a program crash.
+- **Asynchronous Operations:** The call stack doesn’t directly manage asynchronous operations like setTimeout or network requests. These are handled differently by the event loop or Promise queues.
+
