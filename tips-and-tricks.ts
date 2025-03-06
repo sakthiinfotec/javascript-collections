@@ -200,3 +200,138 @@ const object = {
   }
 };
 object.method(callback, 1, 2);
+
+/* 1. Reverse a String */
+function reverse(str) {
+    return str.split('').reverse().join('');
+}
+
+let input = "Hello";
+let output = reverse(input);
+console.log(`The Reverse of ${input} is ${output}`); // Output: "olleH"
+
+/* 2. Palindrome Test */
+function palindrome(str1, str2) {
+    let reversed = str1.split('').reverse().join('');
+    return reversed.toLowerCase() === str2.toLowerCase();
+}
+
+const str1 = "amma";
+const str2 = "amma";
+console.log(palindrome(str1, str2)); // Output: true
+
+/* 3. Most Frequent Character */
+function mostFrequentChar(str) {
+    const charCount = {};
+    let maxChar = '', maxCount = 0;
+
+    for (let char of str) {
+        charCount[char] = (charCount[char] || 0) + 1;
+        if (charCount[char] > maxCount) {
+            maxChar = char;
+            maxCount = charCount[char];
+        }
+    }
+    return maxChar;
+}
+
+const input = "ABBAAdBd5BBB";
+console.log(mostFrequentChar(input)); // Output: 'B'
+
+/* 4. Chunk an Array */
+function chunk(array, size) {
+    const output = [];
+    for (let i = 0; i < array.length; i += size) {
+        output.push(array.slice(i, i + size));
+    }
+    return output;
+}
+
+let array = [1, 2, 3, 4, 5, 6, 7];
+console.log(chunk(array, 3));
+/* Output: [[1, 2, 3], [4, 5, 6], [7]] */
+
+/* 5. Capitalize the First Character of Each Word */
+function capitalize(sentence) {
+    return sentence.split(' ').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
+}
+
+let input = "the moon is so beautiful";
+console.log(capitalize(input)); // Output: "The Moon Is So Beautiful"
+
+
+/* 6. Anagram Test */
+function cleanText(str) {
+    return str.toLowerCase().replace(/\W/g, '').split('').sort().join('');
+}
+
+function anagrams(str1, str2) {
+    return cleanText(str1) === cleanText(str2);
+}
+
+console.log(anagrams("RAIL! SAFETY!", "fairy tales")); // Output: true
+
+/* 7. Count Vowels */
+function vowelCheck(str) {
+    const vowels = ['a', 'e', 'i', 'o', 'u'];
+    return str.split('').filter(char => vowels.includes(char.toLowerCase())).length;
+}
+
+console.log(vowelCheck("Apple")); // Output: 2
+
+/* 8. FizzBuzz */
+function fizzBuzz(n) {
+    for (let i = 1; i <= n; i++) {
+        if (i % 3 === 0 && i % 5 === 0) console.log("FizzBuzz");
+        else if (i % 3 === 0) console.log("Fizz");
+        else if (i % 5 === 0) console.log("Buzz");
+        else console.log(i);
+    }
+}
+
+fizzBuzz(15);
+
+/* 9. Print Steps of (#) */
+function steps(n) {
+    for (let i = 1; i <= n; i++) {
+        console.log('#'.repeat(i));
+    }
+}
+
+steps(3);
+/* Output:
+#
+##
+### */
+
+
+/* 10. Print a Pyramid of (#) */
+function printPyramid(height) {
+    for (let row = 1; row <= height; row++) {
+        let spaces = ' '.repeat(height - row);
+        let hashes = '#'.repeat(2 * row - 1);
+        console.log(spaces + hashes + spaces);
+    }
+}
+
+printPyramid(3);
+
+/* 11. Spiral Matrix */
+function spiralMatrix(n) {
+    let matrix = Array.from({ length: n }, () => Array(n).fill(0));
+    let num = 1, rowStart = 0, rowEnd = n - 1, colStart = 0, colEnd = n - 1;
+
+    while (rowStart <= rowEnd && colStart <= colEnd) {
+        for (let i = colStart; i <= colEnd; i++) matrix[rowStart][i] = num++;
+        rowStart++;
+        for (let i = rowStart; i <= rowEnd; i++) matrix[i][colEnd] = num++;
+        colEnd--;
+        for (let i = colEnd; i >= colStart; i--) matrix[rowEnd][i] = num++;
+        rowEnd--;
+        for (let i = rowEnd; i >= rowStart; i--) matrix[i][colStart] = num++;
+        colStart++;
+    }
+    return matrix;
+}
+
+console.log(spiralMatrix(3));
